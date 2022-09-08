@@ -10,11 +10,11 @@ type RP struct {
 	Server http.Server
 }
 
-func New(port string, httpHander http.Handler) *RP {
+func New(port string, handler http.HandlerFunc) *RP {
 	return &RP{
 		Server: http.Server{
 			Addr:    fmt.Sprintf(":%s", port),
-			Handler: httpHander,
+			Handler: http.HandlerFunc(handler),
 		},
 	}
 }

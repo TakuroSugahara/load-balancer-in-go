@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/TakuroSugahara/load-balancer/config"
@@ -11,7 +10,6 @@ import (
 
 func main() {
 	cfg := config.NewConfig()
-	fmt.Printf("hello %+v", cfg)
 
 	lb := loadbalancer.New(cfg.Backends)
 	rp := rp.New(cfg.Proxy.Port, lb.Handler)
