@@ -6,21 +6,17 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"sync"
+
+	"github.com/TakuroSugahara/load-balancer/backend"
 )
 
 type (
-	Proxy struct{
+	Proxy struct {
 		Port string `json:"port"`
 	}
-	Backend struct{
-		URL string `json:"url"`
-		IsDead bool
-		mu sync.RWMutex
-	}
 	Config struct {
-		Proxy    Proxy     `json:"proxy"`
-		Backends []Backend `json:"backends"`
+		Proxy    Proxy            `json:"proxy"`
+		Backends backend.Backends `json:"backends"`
 	}
 )
 
@@ -45,4 +41,3 @@ func NewConfig() *Config {
 	}
 	return cfg
 }
-
